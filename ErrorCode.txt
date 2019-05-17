@@ -1,0 +1,9 @@
+[Error Message]
+# 0~99 setting about system status.
+# 100~199 setting about config error status.
+
+#=====================================================================#
+# 0~99 setting about system status.
+0: No problem!
+# 100~199 setting about config error status.
+100: Initailize config setting.

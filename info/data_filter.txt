@@ -1,0 +1,29 @@
+## Data filter file of Lanyu. Last updated on 2018.03.28
+Flag (the values will become -888.88)
+  1 = Wrong data        (all sensors are suspected)
+  2 = Power outage      (SOLYS tracker didn't work. Incorrect CMP21D, CHP1, and CGR4 data)
+  3 = Shading problem   (SOLYS tracker still working, but can't aim the Sun. Incorrect CMP21D, CHP1, and CGR4 data)
+  4 = Suspected data remove all SOLYS tracker data by personal judgement
+  5 = Suspected data remove all radiation platform data by personal judgement
+ 71 = Wrong CMP21D      (on SOLYS tracker)
+ 72 = Wrong CHP1        (on SOLYS tracker)
+ 73 = Wrong CGR4        (on SOLYS tracker)
+ 81 = Wrong CMP21T      (on radiation platform)
+ 82 = Wrong UVB         (on radiation platform)
+ 83 = Wrong UVE         (on radiation platform)
+ 84 = Wrong PAR         (on radiation platform)
+Flag (the values will become -999.99)
+ 41 = No observation CMP21D      (on SOLYS tracker)
+ 42 = No observation CHP1        (on SOLYS tracker)
+ 43 = No observation CGR4        (on SOLYS tracker)
+ 51 = No observation CMP21T      (on radiation platform)
+ 52 = No observation UVB         (on radiation platform)
+ 53 = No observation UVE         (on radiation platform)
+ 54 = No observation PAR         (on radiation platform)
+--------------------------------------------------------------
+     Start time(LT)  ,       End time(LT)  , Flag
+"2018-03-13 11:52:00","2018-03-14 09:59:00",1
+"2018-03-13 11:52:00","2020-12-31 23:59:00",52
+"2018-03-13 11:52:00","2020-12-31 23:59:00",53
+"2018-05-27 00:00:00","2018-12-21 23:59:00",71
+"2018-05-27 00:00:00","2018-12-21 23:59:00",72

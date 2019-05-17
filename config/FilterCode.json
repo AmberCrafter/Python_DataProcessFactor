@@ -1,0 +1,28 @@
+{
+    "Level1":{
+        "Comment":"Config formation is [errorCode]:[SensorKeyWord] and to replace data into Null valuew",
+        "1":["CMP21D","CHP1","CGR4","CMP21T","UVB","UVC","PAR"],
+        "2":["CMP21D","CHP1","CGR4"],
+        "3":["CMP21D","CHP1","CGR4"],
+        "4":["CMP21D","CHP1","CGR4"],
+        "5":["CMP21T","UVB","UVC","PAR"],
+
+        "41":"CMP21D",
+        "42":"CHP1",
+        "43":"CGR4",
+        
+        "51":"CMP21T",
+        "52":"UVB",
+        "53":"UVC",
+        "54":"PAR",
+
+        "71":"CMP21D",
+        "72":"CHP1",
+        "73":"CGR4",
+        
+        "81":"CMP21T",
+        "82":"UVB",
+        "83":"UVC",
+        "84":"PAR"
+    }
+}

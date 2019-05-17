@@ -1,0 +1,51 @@
+{
+    "Backup": {
+        "RawfileList": [], 
+        "RawfilePath": "../data/"
+    }, 
+    "Classifier": {
+        "ClassifyMethod": "time", 
+        "OutputDataType": [
+            "Rad", 
+            "Aux"
+        ], 
+        "OutputFolder": "../output/L0/", 
+        "OutputFileNameConnecter": "-", 
+        "OutputFileType": ".dat", 
+        "RowOfHeaders": 4
+    }, 
+    "ConstantsTable": {
+        "parameter": {
+            "ConfigFilePath": "../config/config.json", 
+            "OutputFolder": "../output/", 
+            "TempFolder": "../temp/"
+        }, 
+        "path": {
+            "OutputFolder": "root/output", 
+            "config.json": "root/config/config.json", 
+            "root": "~/", 
+            "temp": "root/temp"
+        }
+    }, 
+    "Filter": {
+        "FilterSettingFilePath": "../info/data_filter.txt", 
+        "FilterCodeConfig":"../config/FilterCode.json",
+        "NumberHeaders": 24
+    },
+    "DataQC":{
+        "Level1":{
+            "Comment": "In this level make the failed value into NullValue",
+            "OutputDataType": [
+                "Rad", 
+                "Aux"
+            ], 
+            "InputFolder": "../output/L0/", 
+            "OutputFolder": "../output/L1/", 
+            "OutputFileNameConnecter": "-", 
+            "OutputFileType": ".dat", 
+            "RowOfHeaders": 4,
+            "NullValue": -999,
+            "MaintainFlagHeader":"\"mt_flag_Tot\""
+        }
+    }
+}
