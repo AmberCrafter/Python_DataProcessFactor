@@ -7,7 +7,7 @@ close all;
 
 %% read filtering information
 
-filter_head = 24;           % data_filter¤¤ ¥]§t "Start time(LT), End time(LT), Flag" ¦¹¦æ¤§«eªº¦æ¼Æ
+filter_head = 24;           % data_filterï¿½ï¿½ ï¿½]ï¿½t "Start time(LT), End time(LT), Flag" ï¿½ï¿½ï¿½æ¤§ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½
 filter = importdata('./data_filter.txt',',',filter_head);
 
 for i = filter_head + 1:size(filter.textdata,1)
@@ -190,7 +190,7 @@ for i = 1:size(flag,2)
     
 end
 
-%% filter radiation data when doing maintenance (¤w²¾¨ì¤W¤è)
+%% filter radiation data when doing maintenance (ï¿½wï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½)
 
 % maintain = find(mt_flag ~= 0);
 % 

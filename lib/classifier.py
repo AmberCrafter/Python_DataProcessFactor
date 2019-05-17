@@ -1,6 +1,6 @@
 import os,json
 import sys
-import initialize,Notepad
+import initialization,Notepad
 
 # class classifier:
 #     def __init__(self, fileObject):
@@ -38,7 +38,7 @@ class MethodProcess:
                         "RowOfHeaders": 4
                     }, 
                 }
-                initialize.updateConfig(config)
+                initialization.updateConfig(config)
                 print("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
                 # raise("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
             return config
