@@ -1,6 +1,6 @@
 import os,json
 import sys
-import initialization,Notepad
+import Notepad
 
 # class classifier:
 #     def __init__(self, fileObject):
@@ -25,9 +25,11 @@ class MethodProcess:
             try:
                 config=config['Classifier']
             except:
+                import initialize
                 config={
                     "Classifier": {
                         "ClassifyMethod": "time", 
+                        "InputFolder": "../temp/",
                         "OutputDataType": [
                             "Rad", 
                             "Aux"
@@ -36,20 +38,22 @@ class MethodProcess:
                         "OutputFileNameConnecter": "-", 
                         "OutputFileType": ".dat", 
                         "RowOfHeaders": 4
-                    }, 
+                    }
                 }
-                initialization.updateConfig(config)
-                print("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
+                initialize.updateConfig(config)
+                print("""ErrorCode: 100\n
+                    Occurs: [classifier.py]\n
+                    Please Setting the Classifer in config.json first. (../config/config.json)""")
                 # raise("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
             return config
         self.config = _importConfig()
 
     def time(self):
-        TempFolder = "../temp/"
+        InputFolder = self.config["InputFolder"]
         OutputFolder=self.config["OutputFolder"]
         typelist=self.config["OutputDataType"]
         typelist.append("Undefined")
-        filelist=os.listdir(TempFolder)
+        filelist=os.listdir(InputFolder)
         if not os.path.isdir(OutputFolder):
             os.mkdir(OutputFolder)
         for element in filelist:
@@ -57,7 +61,7 @@ class MethodProcess:
                 # if all type befor Undifined not correct, then the type is Undefined
                 if not -1==element.find(dataType):
                     break
-            filepath=TempFolder+element
+            filepath=InputFolder+element
             # Debug *******************************************
             #result=os.path.isfile(filepath)
             #print("{0} isfile:{1} ".format(element, result))

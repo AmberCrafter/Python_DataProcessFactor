@@ -1,10 +1,18 @@
 {
+    "A Comment":{
+        "0. ":"Constant Table only use to recode some information, not used in code.",
+        "1. ":"Processing flow: initailize-->Backup-->Classifier(L0)-->DataQC(L1)"
+    },
     "Backup": {
-        "RawfileList": [], 
-        "RawfilePath": "../data/"
+        "A Comment":"If FileList do not specify file, program will ask to weather want to backup all file in path or not.",
+        "FileList": [], 
+        "InputFolder": "../data/",
+        "OutputFolder": "../temp/"
     }, 
     "Classifier": {
+        "A Comment":"",
         "ClassifyMethod": "time", 
+        "InputFolder": "../temp/",
         "OutputDataType": [
             "Rad", 
             "Aux"
@@ -15,26 +23,29 @@
         "RowOfHeaders": 4
     }, 
     "ConstantsTable": {
+        "A Comment":"",
         "parameter": {
             "ConfigFilePath": "../config/config.json", 
             "OutputFolder": "../output/", 
             "TempFolder": "../temp/"
         }, 
         "path": {
-            "OutputFolder": "root/output", 
+            "OutputFolder": "root/output/", 
             "config.json": "root/config/config.json", 
             "root": "~/", 
-            "temp": "root/temp"
+            "temp": "root/temp/"
         }
     }, 
     "Filter": {
+        "A Comment":"",
         "FilterSettingFilePath": "../info/data_filter.txt", 
         "FilterCodeConfig":"../config/FilterCode.json",
         "NumberHeaders": 24
     },
     "DataQC":{
+        "A Comment":"",
         "Level1":{
-            "Comment": "In this level make the failed value into NullValue",
+            "A Comment": "In this level make the failed value into NullValue",
             "OutputDataType": [
                 "Rad", 
                 "Aux"

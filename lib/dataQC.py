@@ -25,7 +25,7 @@ class DoQC:
                 import initialize
                 config={
                     "Level1":{
-                        "Comment": "In this level make the failed value into NullValue",
+                        "A Comment": "In this level make the failed value into NullValue",
                         "OutputDataType": [
                             "Rad", 
                             "Aux"
@@ -35,11 +35,14 @@ class DoQC:
                         "OutputFileNameConnecter": "-", 
                         "OutputFileType": ".dat", 
                         "RowOfHeaders": 4,
-                        "NullValue": -999
+                        "NullValue": -999,
+                        "MaintainFlagHeader":"\"mt_flag_Tot\""
                     }
                 }
                 initialize.updateConfig(config)
-                print("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
+                print("""ErrorCode: 100\n
+                    Occurs: [dataQC.py]\n
+                    Please Setting the Classifer in config.json first. (../config/config.json)""")
                 # raise("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
             return config
         self.config = _importConfig()

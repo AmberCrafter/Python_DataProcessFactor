@@ -1,6 +1,5 @@
 import json
 from datetime import datetime
-import initialization
 class filter():
     def __init__(self):
         def _importConfig():
@@ -24,8 +23,10 @@ class filter():
                         "NumberHeaders": 24
                     }
                 }
-                initialization.updateConfig(config)
-                print("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
+                initialize.updateConfig(config)
+                print("""ErrorCode: 100\n
+                    Occurs: [datafilter_L1.py]\n
+                    Please Setting the Classifer in config.json first. (../config/config.json)""")
                 # raise("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
             return config
         self.config = _importConfig()

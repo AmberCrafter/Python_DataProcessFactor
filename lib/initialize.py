@@ -11,33 +11,65 @@ def _createFolder(arg):
 def _createConfig():
     # Default information
     config={
-        "ConstantsTable":{
-            "path":{
-                "root":"~/",
-                "config.json":"root/config/config.json",
-                "temp":"root/temp",
-                "OutputFolder":"root/output"
-            },
-            "parameter":{
-                "ConfigFilePath":"../config/config.json",
-                "TempFolder":"../temp/",
-                "OutputFolder":"../output/"
-            }
-        },
-        "Filter":{
-            "FilterSettingFilePath":"../info/data_filter.txt",
-            "NumberHeaders":24
+        "A Comment":{
+            "0. ":"Constant Table only use to recode some information, not used in code.",
+            "1. ":"Processing flow: initailize-->Backup-->Classifier(L0)-->DataQC(L1)"
         },
         "Backup": {
-            "RawfilePath":"../data/",
-            "RawfileList":[]
+            "A Comment":"If FileList do not specify file, program will ask to weather want to backup all file in path or not.",
+            "FileList": [], 
+            "InputFolder": "../data/",
+            "OutputFolder": "../temp/"
+        }, 
+        "Classifier": {
+            "A Comment":"",
+            "ClassifyMethod": "time", 
+            "InputFolder": "../temp/",
+            "OutputDataType": [
+                "Rad", 
+                "Aux"
+            ], 
+            "OutputFolder": "../output/L0/", 
+            "OutputFileNameConnecter": "-", 
+            "OutputFileType": ".dat", 
+            "RowOfHeaders": 4
+        }, 
+        "ConstantsTable": {
+            "A Comment":"",
+            "parameter": {
+                "ConfigFilePath": "../config/config.json", 
+                "OutputFolder": "../output/", 
+                "TempFolder": "../temp/"
+            }, 
+            "path": {
+                "OutputFolder": "root/output/", 
+                "config.json": "root/config/config.json", 
+                "root": "~/", 
+                "temp": "root/temp/"
+            }
+        }, 
+        "Filter": {
+            "A Comment":"",
+            "FilterSettingFilePath": "../info/data_filter.txt", 
+            "FilterCodeConfig":"../config/FilterCode.json",
+            "NumberHeaders": 24
         },
-        "Classifier":{
-            "ClassifyMethod": "time",
-            "OutputDataType": ["Rad","Aux"],
-            "OutputFileType": ".dat",
-            "OutputFileNameConnecter": "-",
-            "RowOfHeaders":0
+        "DataQC":{
+            "A Comment":"",
+            "Level1":{
+                "A Comment": "In this level make the failed value into NullValue",
+                "OutputDataType": [
+                    "Rad", 
+                    "Aux"
+                ], 
+                "InputFolder": "../output/L0/", 
+                "OutputFolder": "../output/L1/", 
+                "OutputFileNameConnecter": "-", 
+                "OutputFileType": ".dat", 
+                "RowOfHeaders": 4,
+                "NullValue": -999,
+                "MaintainFlagHeader":"\"mt_flag_Tot\""
+            }
         }
     }
     
