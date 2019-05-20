@@ -83,14 +83,18 @@ class DoQC:
                     columnHeader=readin.split(",")
                     mtFlagIndex=columnHeader.index(self.config["MaintainFlagHeader"])
             # print(mtFlagIndex)
-            count=self.config["RowOfHeaders"]
+            if os.path.isfile(OutputFilePath):
+                ff=open(OutputFilePath,'r')
+                count=len(ff.readlines())
+                ff.close()
+                for i in range(count-self.config["RowOfHeaders"]):
+                    f.readline()
+            else:
+                count=self.config["RowOfHeaders"]
+
             while True:
                 readin=f.readline()
                 count+=1
-                print(count)
-                if count==550:
-                    print("stop")
-                    pass
                 if not readin:
                     f.close()
                     break
@@ -134,11 +138,9 @@ class DoQC:
                 readin=txt+"\n"
                 # ============================================== #
                 ff=Notepad.init(OutputFilePath)
-                if os.path.isfile(OutputFilePath):
-                    ff.append(readin)
-                else:
+                if not os.path.isfile(OutputFilePath):
                     ff.create(header)
-                    ff.append(readin)
+                ff.append(readin)
 
 
 if __name__ == "__main__":

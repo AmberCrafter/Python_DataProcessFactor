@@ -112,7 +112,7 @@ def main():
     _basicFolderCheck()
     if not os.path.exists(ConfigFilePath):
         _createConfig()
-    folderList=["data","temp","output"]
+    folderList=["data","log","temp","output"]
     folderCheck(folderList)
 
 if __name__ == "__main__":

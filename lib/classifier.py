@@ -59,7 +59,7 @@ class MethodProcess:
         for element in filelist:
             for dataType in typelist:
                 # if all type befor Undifined not correct, then the type is Undefined
-                if not -1==element.find(dataType):
+                if not element.find(dataType)==-1:
                     break
             filepath=InputFolder+element
             # Debug *******************************************
@@ -84,12 +84,9 @@ class MethodProcess:
                 OutputFilePath=OutputFolder+date+self.config["OutputFileNameConnecter"]\
                     +dataType+self.config['OutputFileType']
                 ff=Notepad.init(OutputFilePath)
-                if os.path.isfile(OutputFilePath):
-                    ff.append(readin)
-                else:
+                if not os.path.isfile(OutputFilePath):
                     ff.create(header)
-                    ff.append(readin)
-            
+                ff.append(readin)            
 
 if __name__ == "__main__":
     pass

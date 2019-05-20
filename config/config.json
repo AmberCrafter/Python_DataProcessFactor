@@ -58,5 +58,12 @@
             "NullValue": -999,
             "MaintainFlagHeader":"\"mt_flag_Tot\""
         }
+    },
+    "LogFile":{
+        "A comment":"",
+        "LogFolder":"../log/",
+        "data_log":{
+            "LogFilename":"../log/backup_copy_log.txt"
+        }
     }
 }

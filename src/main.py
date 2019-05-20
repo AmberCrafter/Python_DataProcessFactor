@@ -1,6 +1,6 @@
 import sys
 sys.path.append("../lib/")
-import initialize,backup,classifier,dataQC
+import initialize,backup_copy,classifier,dataQC
 
 def main():
     print("Initializing...")
@@ -13,7 +13,7 @@ def main():
         sys.exit(100)
 
     print("Backup the data, please wait...")
-    backup.main()
+    backup_copy.main()
     print("Backup done.")
 
     print("L0: Classifying Data....")
@@ -23,5 +23,5 @@ def main():
     print("L1: Quality Control of Data....")
     dataQC.DoQC().Level1()
     print("L1: QC Done")
-
-main()
+if __name__ == "__main__":
+    main()
