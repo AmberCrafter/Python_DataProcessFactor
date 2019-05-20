@@ -1,28 +1,36 @@
 {
     "Level1":{
-        "Comment":"Config formation is [errorCode]:[SensorKeyWord] and to replace data into Null valuew",
-        "1":["CMP21D","CHP1","CGR4","CMP21T","UVB","UVC","PAR"],
-        "2":["CMP21D","CHP1","CGR4"],
-        "3":["CMP21D","CHP1","CGR4"],
-        "4":["CMP21D","CHP1","CGR4"],
-        "5":["CMP21T","UVB","UVC","PAR"],
+        "Comment":{
+			"1":"Config formation is [errorCode]:[SensorKeyWord] and to replace data into Null valuew",
+			"Sensor_Variable List":{
+				"CMP21D":"SWD_dif",
+				"CMP21T":"SWD_tot",
+				"CHP1":"SWD_dir",
+				"CGR4":"LWD"
+			}
+        },
+        "1":["SWD_dif","SWD_dir","LWD","SWD_tot","UVB","UVE","PAR"],
+        "2":["SWD_dif","SWD_dir","LWD"],
+        "3":["SWD_dif","SWD_dir","LWD"],
+        "4":["SWD_dif","SWD_dir","LWD"],
+        "5":["SWD_tot","UVB","UVE","PAR"],
 
-        "41":"CMP21D",
-        "42":"CHP1",
-        "43":"CGR4",
+        "41":"SWD_dif",
+        "42":"SWD_dir",
+        "43":"LWD",
         
-        "51":"CMP21T",
+        "51":"SWD_tot",
         "52":"UVB",
-        "53":"UVC",
+        "53":"UVE",
         "54":"PAR",
 
-        "71":"CMP21D",
-        "72":"CHP1",
-        "73":"CGR4",
+        "71":"SWD_dif",
+        "72":"SWD_dir",
+        "73":"LWD",
         
-        "81":"CMP21T",
+        "81":"SWD_tot",
         "82":"UVB",
-        "83":"UVC",
+        "83":"UVE",
         "84":"PAR"
     }
 }
