@@ -6,6 +6,11 @@ How to use it?
 
 
 Change Log
+<v1.1.1>
+1. Append backup copy process.
+2. Append schedule setting.
+3. Fix DataQC Bug when L0 or L1 are not a new file.
+
 <v1.0.0>
 1. First Edition of auto processing data.
 Note. This code need a lot of optimization and arrange.
