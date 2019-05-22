@@ -17,11 +17,11 @@ def main():
     print("Backup done.")
 
     print("L0: Classifying Data....")
-    classifier.MethodProcess().time()
+    filelist=classifier.MethodProcess().time()
     print("L0: Classify Done")
 
     print("L1: Quality Control of Data....")
-    dataQC.DoQC().Level1()
+    dataQC.DoQC().Level1(filelist)
     print("L1: QC Done")
 if __name__ == "__main__":
     main()
