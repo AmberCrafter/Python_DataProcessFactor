@@ -47,10 +47,13 @@ class DoQC:
             return config
         self.config = _importConfig()
 
-    def Level1(self):
+    def Level1(self,filelist=None):
         import datafilter_L1,Notepad
         self.config = self.config["Level1"]
-        InputFolder=self.config["InputFolder"]
+        if filelist==None:
+            InputFolder=self.config["InputFolder"]
+        else:
+            InputFolder=filelist
         OutputFolder=self.config["OutputFolder"]
         if not os.path.isdir(OutputFolder):
             os.mkdir(OutputFolder)
