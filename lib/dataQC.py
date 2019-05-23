@@ -50,6 +50,7 @@ class DoQC:
     def Level1(self,filelist=None):
         import datafilter_L1,Notepad
         self.config = self.config["Level1"]
+        InputFolder =self.config["InputFolder"]
         OutputFolder=self.config["OutputFolder"]
         if not os.path.isdir(OutputFolder):
             os.mkdir(OutputFolder)
@@ -61,9 +62,9 @@ class DoQC:
         typelist.append("Undefined")
         # filelist=os.listdir(InputFolder)
         if filelist==None:
-            InputFolder=self.config["InputFolder"]
+            filelist=os.listdir(InputFolder)
         else:
-            InputFolder=filelist
+            filelist=filelist
         for element in filelist:
             for dataType in typelist:
                 # if all type befor Undifined not correct, then the type is Undefined

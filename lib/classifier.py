@@ -91,7 +91,7 @@ class MethodProcess:
                     ff.create(header)
                 ff.append(readin)
                 Outputfilelist.update({}.fromkeys([dummy]))
-        return Outputfilelist  # used to dataQC.Level1
+        return list(Outputfilelist.keys())  # used to dataQC.Level1
                 
 if __name__ == "__main__":
     pass

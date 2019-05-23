@@ -1,0 +1,5 @@
+Here is the bug konw during the program develop and didn't have any idea how to debug.
+1. 當此程式停止後，手動或無法預期的造成Loggernet Rawfile被移除後，間隔足夠時間使資料量大於或等於前一份Rawfile。此時，上次log記錄到的行數以前的資料不會進行備份與QC，需要特別注意。
+2. 當Log file被無預期的刪除後，會造成重複備份的問題。
+
+Note. 過多的資料比對會造成程式效率低落。
