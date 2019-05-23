@@ -50,10 +50,6 @@ class DoQC:
     def Level1(self,filelist=None):
         import datafilter_L1,Notepad
         self.config = self.config["Level1"]
-        if filelist==None:
-            InputFolder=self.config["InputFolder"]
-        else:
-            InputFolder=filelist
         OutputFolder=self.config["OutputFolder"]
         if not os.path.isdir(OutputFolder):
             os.mkdir(OutputFolder)
@@ -63,12 +59,16 @@ class DoQC:
 
         typelist=self.config["OutputDataType"]
         typelist.append("Undefined")
-        filelist=os.listdir(InputFolder)
+        # filelist=os.listdir(InputFolder)
+        if filelist==None:
+            InputFolder=self.config["InputFolder"]
+        else:
+            InputFolder=filelist
         for element in filelist:
-            # for dataType in typelist:
-            #     # if all type befor Undifined not correct, then the type is Undefined
-            #     if not -1==element.find(dataType):
-            #         break
+            for dataType in typelist:
+                # if all type befor Undifined not correct, then the type is Undefined
+                if not -1==element.find(dataType):
+                    break
             filepath=InputFolder+element
             OutputFilePath=OutputFolder+element
             # Debug *******************************************
