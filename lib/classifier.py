@@ -56,6 +56,7 @@ class MethodProcess:
         filelist=os.listdir(InputFolder)
         if not os.path.isdir(OutputFolder):
             os.mkdir(OutputFolder)
+        Outputfilelist={} # make the output filelist
         for element in filelist:
             for dataType in typelist:
                 # if all type befor Undifined not correct, then the type is Undefined
@@ -81,12 +82,16 @@ class MethodProcess:
                     f.close()
                     break
                 date=str(readin[1:5])+str(readin[6:8])+str(readin[9:11])
-                OutputFilePath=OutputFolder+date+self.config["OutputFileNameConnecter"]\
+                # get the filename
+                dummy=date+self.config["OutputFileNameConnecter"]\
                     +dataType+self.config['OutputFileType']
+                OutputFilePath=OutputFolder+dummy
                 ff=Notepad.init(OutputFilePath)
                 if not os.path.isfile(OutputFilePath):
                     ff.create(header)
-                ff.append(readin)            
-
+                ff.append(readin)
+                Outputfilelist.update({}.fromkeys([dummy]))
+        return Outputfilelist  # used to dataQC.Level1
+                
 if __name__ == "__main__":
     pass
