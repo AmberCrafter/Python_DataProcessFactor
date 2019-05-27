@@ -76,6 +76,7 @@ class DoQC:
                 for i,val in enumerate(readin):
                     if i==0:
                         txt=txt+val
+                        continue
                     txt=txt+","+val
                 txt=txt+"\n"
             readin=f.readline()
