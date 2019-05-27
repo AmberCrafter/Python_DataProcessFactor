@@ -85,8 +85,8 @@ def main():
         }
     else:
         logInfo={
-            "AuxRow":int(Logger.getInfo()["AuxRow"].values[0]),
-            "RadRow":int(Logger.getInfo()["RadRow"].values[0])
+            "AuxRow":Logger.getInfo()["AuxRow"].values[0],
+            "RadRow":Logger.getInfo()["RadRow"].values[0]
         }
     if config['FileList'] == []:
         # Move All file to temp folder.
@@ -139,10 +139,10 @@ def main():
             if StartRaw<4:
                 StartRaw=4
             if os.path.isfile(OutputFile):
-                txt=""
+                txt=[]
                 f=open(file=InputFile,mode="r")
                 for i in range(4):
-                    txt+f.readline()
+                    txt.append(f.readline())
                 createFile(OutputFile,txt)
                 f.close()
             StartRaw=copy_context(OutputFile,InputFile,StartRaw)
