@@ -5,12 +5,12 @@ import initialize,backup_copy,classifier,dataQC
 def main():
     print("Initializing...")
     initialize.main()
-    print("Please check the config setting...")
-    print("Setting Done? [Yes/No]")
-    check=str(sys.stdin.readline()).replace("\n","").replace("\r","")  # check type is string
-    if not check.lower()=="yes":
-        print("Please goto '../config/config.json check the setting.'")
-        sys.exit(100)
+    # print("Please check the config setting...")
+    # print("Setting Done? [Yes/No]")
+    # check=str(sys.stdin.readline()).replace("\n","").replace("\r","")  # check type is string
+    # if not check.lower()=="yes":
+    #     print("Please goto '../config/config.json check the setting.'")
+    #     sys.exit(100)
 
     print("Backup the data, please wait...")
     backup_copy.main()

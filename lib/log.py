@@ -1,6 +1,15 @@
 import os,json,logging
 import pandas as pd
 
+# Setting logging module level
+# Infomation of data upload row use level 21
+INFO_ROW=21
+logging.addLevelName(INFO_ROW, "INFO_ROW")
+def info_row(self, message, *args, **kws):
+    self.log(INFO_ROW, message, *args, **kws) 
+logging.Logger.info_row = info_row
+
+
 class Logger:
     def __init__(self,*logType):
         # logType: keyword under LogFile in config.json
@@ -57,6 +66,7 @@ class Logger:
             format='%(asctime)s, %(levelname)-8s, %(message)s',
             datefmt="%Y-%m-%d %H:%M:%S",
             filename=LogFilename)
+        self.Logger=logging.getLogger()
     def _checkfile(self):
         if not os.path.isfile(self.config["LogFilename"]):
             f=open(file=self.config["LogFilename"],mode="w")
@@ -64,16 +74,18 @@ class Logger:
             f.write(txt)
         pass
     def writeInfo(self,information):
-        logging.info(information)
+        self.Logger.info_row(information)
 
     def getInfo(self):
         # This is the customize function
         df=pd.read_csv(self.config["LogFilename"],names=["Time","Type","AuxRow","RadRow"],skiprows=1)
-        mask=df["Type"].str.strip()=="INFO"   # .str.strip() 用於清除空格
+        mask=df["Type"].str.strip()=="INFO_ROW"   # .str.strip() 用於清除空格
         # print(df[mask].tail(1)) 
         return df[mask].tail(1)
 
 if __name__ == "__main__":
     logger=Logger("data_log")
-    logger.getInfo()
+    logger.writeInfo("123456")
+    #print(dummy)
+    #logger.getInfo()
     #logger.record("{0},{1}".format(1,2))
