@@ -13,8 +13,13 @@ How to use it?
 3. L0, L1 datafiles in L0 and L1 folder.
 
 Change Log
+<v1.1.6>
+1. Fixed logging file bug.
+2. Fixed L1 file has repeat data.
+3. RunTest by scheduleRun.
+
 <v1.1.5 and below>
-1. Fix DataQC filelist is not correct, which transport from L0 filelist.
+1. Fixed DataQC filelist is not correct, which transport from L0 filelist.
 2. Append logging module to recode backup_copy.py INFO, which recode the last row of number in this cycle done in Rawfile(LoggerNet).
 3. Recode all the bugs that I known and not fix.
 4. Append the process how to do in this code.
@@ -22,7 +27,7 @@ Change Log
 <v1.1.1>
 1. Append backup copy process.
 2. Append schedule setting.
-3. Fix DataQC Bug when L0 or L1 are not a new file.
+3. Fixed DataQC Bug when L0 or L1 are not a new file.
 
 <v1.0.0>
 1. First Edition of auto processing data.
