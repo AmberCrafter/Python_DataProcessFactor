@@ -1,8 +1,13 @@
+print("Import modules, please wait...")
 import schedule,time
 # import threading
 import datetime
 import main
 
+# lib module initialize
+import os,sys,pandas,logging,json,numpy
+
+print("Import finish: "+str(datetime.datetime.now()))
 # This is the simple way to do work in schedule.
 # The best module is "APScheduler"
 
@@ -10,6 +15,7 @@ import main
 
 def job():
     main.main()
+    print(datetime.datetime.now())
 
 def run():
     # Work flow without threading: 
