@@ -6,6 +6,7 @@
 # ************************************************************** # 
 import os,json
 from datetime import datetime
+# import pandas as pd
 
 class DoQC:
     def __init__(self):
@@ -46,9 +47,45 @@ class DoQC:
                 # raise("ErrorCode: 100\nPlease Setting the Classifer in config.json first. (../config/config.json)")
             return config
         self.config = _importConfig()
+    def drop_duplicates(self,filePath):
+        # Failed===================================================== #
+        # ff=open(filePath,"r")
+        # txt=""
+        # for i in range(4):
+        #     txt=txt+ff.readline()
+        # ff.close()
+        # df = pd.read_csv(filePath,header=0,skiprows=[0,2,3])
+        # df.drop_duplicates(subset="TIMESTAMP",keep="last",inplace=True)
+        # ff=open("test.csv",'a+')
+        # df.to_csv(ff,header=0,index=0)
+        # =========================================================== #
+        f=open(filePath,"r")
+        txt=""
+        for i in range(4):
+            txt=txt+f.readline()
+        readin=f.readline()
+        formation="\"%Y-%m-%d %H:%M:%S\""           # time formation
+        dummy="\"0001-01-01 00:00:00\""             # time initialize
+        dummy=datetime.strptime(dummy,formation)
+        while readin:
+            readin=readin.replace("\n","").split(",")
+            dummy1=datetime.strptime(readin[0],formation)
+            print(dummy1)
+            if dummy1>dummy:
+                dummy=dummy1                        # get the first data witch is repeat.
+                for i,val in enumerate(readin):
+                    if i==0:
+                        txt=txt+val
+                    txt=txt+","+val
+                txt=txt+"\n"
+            readin=f.readline()
+        f.close()
+        f=open(filePath,"w")
+        f.write(txt)
+        f.close()
 
     def Level1(self,filelist=None):
-        import datafilter_L1,Notepad
+        import datafilter_L1,Notepad,log
         self.config = self.config["Level1"]
         InputFolder =self.config["InputFolder"]
         OutputFolder=self.config["OutputFolder"]
@@ -57,7 +94,7 @@ class DoQC:
         datafilter=datafilter_L1.filter().init()
         # print(datafilter.TimeInteval[0][3])
         # print(datafilter.FilterCodeConfig)
-
+        
         typelist=self.config["OutputDataType"]
         typelist.append("Undefined")
         # filelist=os.listdir(InputFolder)
@@ -89,7 +126,7 @@ class DoQC:
             # print(mtFlagIndex)
             if os.path.isfile(OutputFilePath):
                 ff=open(OutputFilePath,'r')
-                count=len(ff.readlines())
+                count=len(ff.readlines())  # get number of row to start
                 ff.close()
                 for i in range(count-self.config["RowOfHeaders"]):
                     f.readline()
@@ -145,6 +182,9 @@ class DoQC:
                 if not os.path.isfile(OutputFilePath):
                     ff.create(header)
                 ff.append(readin)
+            self.drop_duplicates(OutputFilePath)  # remove repeat value
+            
+
 
 
 if __name__ == "__main__":
