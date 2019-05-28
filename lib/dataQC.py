@@ -49,6 +49,7 @@ class DoQC:
             return config
         self.config = _importConfig()
     def drop_duplicates(self,filePath):
+        # Old version; new version: self.reorganize
         # Failed===================================================== #
         # ff=open(filePath,"r")
         # txt=""
