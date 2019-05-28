@@ -5,8 +5,9 @@
 #   2. Filting out "maintain data" with maintain code.
 # ************************************************************** # 
 import os,json
-from datetime import datetime
+import datetime
 # import pandas as pd
+import datafilter_L1,Notepad,log
 
 class DoQC:
     def __init__(self):
@@ -66,10 +67,10 @@ class DoQC:
         readin=f.readline()
         formation="\"%Y-%m-%d %H:%M:%S\""           # time formation
         dummy="\"0001-01-01 00:00:00\""             # time initialize
-        dummy=datetime.strptime(dummy,formation)
+        dummy=datetime.datetime.strptime(dummy,formation)
         while readin:
             readin=readin.replace("\n","").split(",")
-            dummy1=datetime.strptime(readin[0],formation)
+            dummy1=datetime.datetime.strptime(readin[0],formation)
             print(dummy1)
             if dummy1>dummy:
                 dummy=dummy1                        # get the first data witch is repeat.
@@ -85,8 +86,60 @@ class DoQC:
         f.write(txt)
         f.close()
 
+    def reorganize(self,filePath):
+        # Open Rawfile
+        f=open(filePath,"r")
+        txt=""
+        for i in range(4):
+            txt=txt+f.readline()
+        readin=f.readline()
+
+        # Generate timelist
+        timelist=filePath.split("/")[3][0:8]
+        formation="%Y%m%d"
+        timelist = datetime.datetime.strptime(timelist,formation)
+        nummins=1440
+        timelist = [timelist + datetime.timedelta(minutes=x) for x in range(0, nummins)]
+        
+        # Generate data list with timelist and number of columns.
+        dummy = len(readin.replace("\n","").split(",")) # get number of columns.
+        formation="\"%Y-%m-%d %H:%M:%S\""           # time formation
+        # Bug formula------------------------------------------------ #
+        # datatable=[[datetime.datetime.strftime(timelist[row],formation)]
+        #     .extend([-999 for column in range(dummy-1)]) for row in range(nummins)]
+        # ----------------------------------------------------------- #
+        datatable=[[-999 for column in range(dummy)] for row in range(nummins)]
+        for i,val in enumerate(timelist):
+            datatable[i][0]=datetime.datetime.strftime(val,formation)
+
+        # Create a datetime object to recode final time
+        TimeRecode=datetime.datetime.strptime("\"0001-01-01 00:00:00\"",formation)
+        while readin:
+            readin=readin.replace("\n","").split(",")
+            dummy=datetime.datetime.strptime(readin[0],formation)
+            try:
+                num=timelist.index(dummy)  # find the correct row in datatable.
+            except:
+                print("Failed to find: "+dummy)
+                continue
+            if dummy>TimeRecode:
+                TimeRecode=dummy
+            for i,val in enumerate(readin):
+                datatable[num][i]=val
+            readin=f.readline()
+        f.close()
+
+        # Write out Level1 data
+        num=timelist.index(TimeRecode) # get the final time index
+        for i in range(num):
+            for val in datatable[i]:
+                txt=txt+","+str(val)
+            txt+="\n"
+        f=open(filePath,"w")
+        f.write(txt)
+        f.close()
+
     def Level1(self,filelist=None):
-        import datafilter_L1,Notepad,log
         self.config = self.config["Level1"]
         InputFolder =self.config["InputFolder"]
         OutputFolder=self.config["OutputFolder"]
@@ -145,7 +198,7 @@ class DoQC:
                 readin = readin.replace("\n","").split(",")
                 ## 1. data_filter.txt
                 formation='"%Y-%m-%d %H:%M:%S"'
-                datatime=datetime.strptime(readin[0],formation)
+                datatime=datetime.datetime.strptime(readin[0],formation)
                 filterList=[]
                 M1=False
                 for i in range(len(datafilter.TimeInteval[0])):
@@ -183,7 +236,11 @@ class DoQC:
                 if not os.path.isfile(OutputFilePath):
                     ff.create(header)
                 ff.append(readin)
-            self.drop_duplicates(OutputFilePath)  # remove repeat value
+            # self.drop_duplicates(OutputFilePath)  # remove repeat value
+            # ------------------------------------------------------- #
+            # 1. Remove repeat value
+            # 2. Patch lose value by -999
+            self.reorganize(OutputFilePath)
             
 
 

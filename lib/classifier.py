@@ -77,7 +77,7 @@ class MethodProcess:
             while True:
                 readin=f.readline()
                 count+=1
-                print(count)
+                # print(count)
                 if not readin:
                     f.close()
                     break
