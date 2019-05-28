@@ -133,7 +133,10 @@ class DoQC:
         # Write out Level1 data
         num=timelist.index(TimeRecode) # get the final time index
         for i in range(num):
-            for val in datatable[i]:
+            for j,val in enumerate(datatable[i]):
+                if j==0:
+                    txt=txt+str(val)
+                    continue
                 txt=txt+","+str(val)
             txt+="\n"
         f=open(filePath,"w")
