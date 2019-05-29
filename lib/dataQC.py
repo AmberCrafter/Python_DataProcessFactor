@@ -97,7 +97,7 @@ class DoQC:
         readin=f.readline()
 
         # Generate timelist
-        timelist=filePath.split("/")[3][0:8]
+        timelist=filePath.split("/")[-1][0:8]
         formation="%Y%m%d"
         timelist = datetime.datetime.strptime(timelist,formation)
         nummins=1440
