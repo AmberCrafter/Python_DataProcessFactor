@@ -13,6 +13,9 @@ How to use it?
 3. L0, L1 datafiles in L0 and L1 folder.
 
 Change Log
+<v1.1.9>
+1. Fixed real time process L1 BUG when raw data lose 1 minute before.
+
 <v1.1.8>
 1. Fixed L1 file lose last data.
 

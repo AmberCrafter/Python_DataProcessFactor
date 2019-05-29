@@ -13,6 +13,7 @@ class DoQC:
     def __init__(self):
         def _importConfig():
             ConfigFilePath="../config/config.json"
+            print(os.path.abspath(ConfigFilePath))
             try:
                 f=open(ConfigFilePath)
             except FileNotFoundError:
@@ -184,16 +185,35 @@ class DoQC:
             # print(mtFlagIndex)
             if os.path.isfile(OutputFilePath):
                 ff=open(OutputFilePath,'r')
-                count=len(ff.readlines())  # get number of row to start
+
+                # get number of row to start
+                # Old method----------------------------------------- #
+                # count=len(ff.readlines())
+                # for i in range(count-self.config["RowOfHeaders"]):
+                #     f.readline()
+                # --------------------------------------------------- #
+                # count: recode index of row in L0 file
+                # dummy: recode L1 last time
+                # dummy1:recode L0 current time
+                readin =ff.readline()
+                while readin:
+                    dummy=readin
+                    readin=ff.readline()
                 ff.close()
-                for i in range(count-self.config["RowOfHeaders"]):
-                    f.readline()
-            else:
-                count=self.config["RowOfHeaders"]
+                dummy=dummy.split(",")[0]
+                formation="\"%Y-%m-%d %H:%M:%S\""  # time formation
+                dummy=datetime.datetime.strptime(dummy,formation)
+
+                readin=f.readline().split(",")[0]  # L0 file time to compare with L1 file last time
+                dummy1=datetime.datetime.strptime(readin,formation)
+                while not dummy==dummy1:
+                    readin=f.readline().split(",")[0]  # L0 file time
+                    dummy1=datetime.datetime.strptime(readin,formation)
+            # else:
+            #     count=self.config["RowOfHeaders"]     # count is not used
 
             while True:
                 readin=f.readline()
-                count+=1
                 if not readin:
                     f.close()
                     break
