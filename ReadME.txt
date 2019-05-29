@@ -13,6 +13,9 @@ How to use it?
 3. L0, L1 datafiles in L0 and L1 folder.
 
 Change Log
+<v1.1.8>
+1. Fixed L1 file lose last data.
+
 <v1.1.7>
 1. Fixed L1 file has lose data.
 2. dataQC Level1 choose the last data which is repeat.
