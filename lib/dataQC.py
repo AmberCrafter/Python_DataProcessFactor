@@ -13,7 +13,6 @@ class DoQC:
     def __init__(self):
         def _importConfig():
             ConfigFilePath="../config/config.json"
-            print(os.path.abspath(ConfigFilePath))
             try:
                 f=open(ConfigFilePath)
             except FileNotFoundError:
