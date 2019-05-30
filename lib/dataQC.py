@@ -229,10 +229,7 @@ class DoQC:
                     endtime=datafilter.TimeInteval[1][i]
                     M1=(starttime<datatime<endtime)
                     if M1==True:
-                        # print(datafilter.FilterCodeConfig[str(datafilter.flag[i])])
                         filterList.append(datafilter.FilterCodeConfig[str(datafilter.flag[i])])
-                # print(filterList)
-                # exit()
                 M1=len(filterList)>0    # Determine weather filterList empty or not. If not then M1=True.
                 ## 2. MaintainCode
                 M2=False
