@@ -235,7 +235,7 @@ class DoQC:
                 M2=False
                 if readin[mtFlagIndex]!="0":
                     # print(readin[mtFlagIndex])
-                    filterList.extend(datafilter.FilterCodeConfig['1'])  # [1]: Imply ALL DATA replace into Null value.
+                    filterList.append(datafilter.FilterCodeConfig['1'])  # [1]: Imply ALL DATA replace into Null value.
                     M2=True
                 if M1|M2:
                     filterList=list(set(filterList))
