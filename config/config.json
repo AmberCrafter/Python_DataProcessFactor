@@ -40,7 +40,7 @@
         "A Comment":"",
         "FilterSettingFilePath": "../info/data_filter.txt", 
         "FilterCodeConfig":"../config/FilterCode.json",
-        "NumberHeaders": 24
+        "NumberHeaders": 25
     },
     "DataQC":{
         "A Comment":"",

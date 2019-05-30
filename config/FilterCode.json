@@ -9,20 +9,22 @@
 				"CGR4":"LWD"
 			}
         },
-        "1":["SWD_dif","SWD_dir","LWD","SWD_tot","UVB","UVE","PAR"],
-        "2":["SWD_dif","SWD_dir","LWD"],
-        "3":["SWD_dif","SWD_dir","LWD"],
-        "4":["SWD_dif","SWD_dir","LWD"],
-        "5":["SWD_tot","UVB","UVE","PAR"],
+        "1":["SWD_dif","SWD_dir","LWD","SWD_dif_ct","SWD_tot","UVB","UVE","PAR","SWD_tot_ct"],
+        "2":["SWD_dif","SWD_dir","LWD","SWD_dif_ct"],
+        "3":["SWD_dif","SWD_dir","LWD","SWD_dif_ct"],
+        "4":["SWD_dif","SWD_dir","LWD","SWD_dif_ct"],
+        "5":["SWD_tot","UVB","UVE","PAR","SWD_tot_ct"],
 
         "41":"SWD_dif",
         "42":"SWD_dir",
         "43":"LWD",
+        "44":"SWD_dif_ct",
         
         "51":"SWD_tot",
         "52":"UVB",
         "53":"UVE",
         "54":"PAR",
+        "55":"SWD_tot_ct",
 
         "71":"SWD_dif",
         "72":"SWD_dir",
