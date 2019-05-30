@@ -7,7 +7,7 @@
 import os,json
 import datetime
 # import pandas as pd
-import datafilter_L1,Notepad,log
+import datafilter_L1,Notepad,log,ToolKid
 
 class DoQC:
     def __init__(self):
@@ -238,6 +238,7 @@ class DoQC:
                     filterList.append(datafilter.FilterCodeConfig['1'])  # [1]: Imply ALL DATA replace into Null value.
                     M2=True
                 if M1|M2:
+                    filterList=ToolKid.flatten(filterList)
                     filterList=list(set(filterList))
                     filtColumnList=[]
                     for i in range(3,len(readin)):

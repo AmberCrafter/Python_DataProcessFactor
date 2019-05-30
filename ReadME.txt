@@ -15,6 +15,7 @@ How to use it?
 Change Log
 <v1.1.10>
 1. Fixed filterlist BUG.(DataQC.py)
+    * Append ToolKid.py  --> flatten used to flatten multi_lists.
 2. Append FilterCode.json, data_filter.txt, and setting config.
 
 <v1.1.9>
