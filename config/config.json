@@ -55,7 +55,8 @@
             "OutputFileNameConnecter": "-", 
             "OutputFileType": ".dat", 
             "RowOfHeaders": 4,
-            "NullValue": -999,
+            "NullValueList": ["NaN"],
+            "OutputNullValue": "-999",
             "MaintainFlagHeader":"\"mt_flag_Tot\""
         }
     },

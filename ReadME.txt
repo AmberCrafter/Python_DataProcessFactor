@@ -13,6 +13,12 @@ How to use it?
 3. L0, L1 datafiles in L0 and L1 folder.
 
 Change Log
+<v1.1.11>
+1. Fixed value of "NaN" didn't replace by -999. 
+2. Create a new tech in config setting:
+    a. ["DataQC"]["Level1"]["NullValueList"] : Set list of null value.
+    b. ["DataQC"]["Level1"]["OutputNullValue"] : Set null value in output file.
+
 <v1.1.10>
 1. Fixed filterlist BUG.(DataQC.py)
     * Append ToolKid.py  --> flatten used to flatten multi_lists.

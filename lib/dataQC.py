@@ -246,10 +246,12 @@ class DoQC:
                             if columnHeader[i].find(element)!=-1:
                                 filtColumnList.append(i)
                     for i in filtColumnList:
-                        readin[i]="-999"
+                        readin[i]=self.config["OutputNullValue"]  # "-999"
                     # print(readin)
                 txt=""
                 for i,val in enumerate(readin):
+                    if val.replace("\"","") in self.config["NullValueList"]:
+                        val=self.config["OutputNullValue"]  # "-999"
                     if i==0:
                         txt=val
                         continue

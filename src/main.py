@@ -1,5 +1,6 @@
-import sys
-sys.path.append("../lib/")
+import sys,os
+os.chdir(os.path.dirname(__file__))
+sys.path.append(os.path.dirname(__file__)+"/../lib")
 import initialize,backup_copy,classifier,dataQC
 
 def main():
