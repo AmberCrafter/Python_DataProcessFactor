@@ -1,20 +1,5 @@
 import json,os,sys
-
-# def _createFolder(arg):
-#     os.mkdir(arg)
-# def _createConfig():
-#     # Default information
-#     configdata={
-#         "Backup": {
-#             "RawfilePath":"../data/",
-#             "RawfileList":[]
-#         }
-#     }
-    
-#     filepath="../config/config.json"
-#     f=open(filepath, 'w')
-#     json.dump(configdata, f, sort_keys=True, indent=4, separators=(', ', ': '))
-
+import logging
 def _importConfig():
     ConfigFilePath="../config/config.json"
     try:
@@ -46,6 +31,11 @@ def _importConfig():
         print("Please Run the 'initailize.py' first!")
         raise Exception("ConfigError")
     return config
+def _isFileExist(filepath):
+    if os.path.isfile(filepath):
+        return True
+    else:
+        return False
 
 def main():
     try:
@@ -56,19 +46,43 @@ def main():
         raise
 
     finalFilePath=os.path.abspath(config["OutputFolder"])
+    # =============================================================== #
+    # Logging setting
+    # Create logger
+    logger=logging.getLogger("backupLog")
+    # Set logger handler, trigger level and formatter
+    formation=logging.Formatter('%(asctime)-12s - %(levelname)-8s - [%(name)s] - %(message)s')
+    handler=logging.FileHandler("../log/backup.log")
+    handler.setFormatter(formation)
+    handler.setLevel(logging.INFO)
+    # Add handler into logger.
+    logger.addHandler(handler)
+    # =============================================================== #
     if config['FileList'] == []:
         # Move All file to temp folder.
-        print("Do you want to move all file into temp folder? [Yes/No]")
+        print("Do you want to copy all file into temp folder? [Yes/No]")
         check=str(sys.stdin.readline()).replace("\n","").replace("\r","")  # check type is string
         if check.lower()=="yes":
             filelist=os.listdir(filepath)
-            for element in filelist:
-                os.rename(filepath+element, finalFilePath+'\\'+element)
-        else:
-            pass
+            if filelist==[]:
+                logger.warning("File: No file exist!")
+            else:
+                for element in filelist:
+                    if _isFileExist(finalFilePath+'\\'+element):  # 若目標位置文件存在，則先移除文件
+                        os.remove(finalFilePath+'\\'+element)
+                    os.rename(filepath+element, finalFilePath+'\\'+element)
+                    logger.info("File:{0} Backup successful!".format(element))
+                else:
+                    pass
     else:
         for element in config['FileList']:
+            if not _isFileExist(filepath+element):
+                logger.warning("File:{0} is not exist!".format(element))
+                continue
+            if _isFileExist(finalFilePath+'\\'+element):  # 若目標位置文件存在，則先移除文件
+                    os.remove(finalFilePath+'\\'+element)
             os.rename(filepath+element, finalFilePath+'\\'+element)
+            logger.info("File:{0} Backup successful!".format(element))
 
-if __name__=='__main__':
+if __name__ == "__main__":
     main()

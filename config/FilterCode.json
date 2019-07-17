@@ -9,7 +9,8 @@
 				"CGR4":"LWD"
 			}
         },
-        "1":["SWD_dif","SWD_dir","LWD","SWD_dif_ct","SWD_tot","UVB","UVE","PAR","SWD_tot_ct"],
+        "1":["EVAP","SW_down","SW_up","LW_down","LW_up","NR_lite"],
+        "11":["SWD_dif","SWD_dir","LWD","SWD_dif_ct","SWD_tot","UVB","UVE","PAR","SWD_tot_ct"],
         "2":["SWD_dif","SWD_dir","LWD","SWD_dif_ct"],
         "3":["SWD_dif","SWD_dir","LWD","SWD_dif_ct"],
         "4":["SWD_dif","SWD_dir","LWD","SWD_dif_ct"],

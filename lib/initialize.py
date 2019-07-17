@@ -67,7 +67,7 @@ def _createConfig():
                 "OutputFileNameConnecter": "-", 
                 "OutputFileType": ".dat", 
                 "RowOfHeaders": 4,
-                "NullValue": -999,
+                "NullValue": -99.9,
                 "MaintainFlagHeader":"\"mt_flag_Tot\""
             }
         }

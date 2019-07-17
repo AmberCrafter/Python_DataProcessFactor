@@ -37,7 +37,7 @@ class DoQC:
                         "OutputFileNameConnecter": "-", 
                         "OutputFileType": ".dat", 
                         "RowOfHeaders": 4,
-                        "NullValue": -999,
+                        "NullValue": -99.9,
                         "MaintainFlagHeader":"\"mt_flag_Tot\""
                     }
                 }
@@ -180,7 +180,11 @@ class DoQC:
                 header=header+readin
                 if i==1:
                     columnHeader=readin.split(",")
-                    mtFlagIndex=columnHeader.index(self.config["MaintainFlagHeader"])
+                    # mtFlagIndex=columnHeader.index(self.config["MaintainFlagHeader"])
+                    for mtFlagIndex,dummy in enumerate(columnHeader):
+                        if not dummy.find(self.config["MaintainFlagHeader"])==-1:   # get the first maintain code.
+                            break
+                    
             # print(mtFlagIndex)
             if os.path.isfile(OutputFilePath):
                 ff=open(OutputFilePath,'r')
@@ -246,12 +250,12 @@ class DoQC:
                             if columnHeader[i].find(element)!=-1:
                                 filtColumnList.append(i)
                     for i in filtColumnList:
-                        readin[i]=self.config["OutputNullValue"]  # "-999"
+                        readin[i]=self.config["OutputNullValue"]  # "-99.9"
                     # print(readin)
                 txt=""
                 for i,val in enumerate(readin):
                     if val.replace("\"","") in self.config["NullValueList"]:
-                        val=self.config["OutputNullValue"]  # "-999"
+                        val=self.config["OutputNullValue"]  # "-99.9"
                     if i==0:
                         txt=val
                         continue

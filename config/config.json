@@ -15,10 +15,12 @@
         "InputFolder": "../temp/",
         "OutputDataType": [
             "Rad", 
-            "Aux"
+            "Aux",
+            "CR1000XSeries_Datatable_Min",
+            "CR1000XSeries_RainData"
         ], 
         "OutputFolder": "../output/L0/", 
-        "OutputFileNameConnecter": "-", 
+        "OutputFileNameConnecter": "_", 
         "OutputFileType": ".dat", 
         "RowOfHeaders": 4
     }, 
@@ -55,9 +57,9 @@
             "OutputFileNameConnecter": "-", 
             "OutputFileType": ".dat", 
             "RowOfHeaders": 4,
-            "NullValueList": ["NaN"],
-            "OutputNullValue": "-999",
-            "MaintainFlagHeader":"\"mt_flag_Tot\""
+            "NullValueList": ["NaN","NAN"],
+            "OutputNullValue": "-99.9",
+            "MaintainFlagHeader":"Maintain_Tot"
         }
     },
     "LogFile":{

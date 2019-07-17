@@ -1,4 +1,4 @@
-How to use it?
+﻿How to use it?
 1. Setting information in "/config/config.json"
     a. ["Backup"]["RawfilePath"]=${Original_file_path}
     b. If need to specify some file, please entry them into ["Backup"]["RawfileList"] by sring format in list.
@@ -13,6 +13,12 @@ How to use it?
 3. L0, L1 datafiles in L0 and L1 folder.
 
 Change Log
+<v1.2.0>
+1. Null value set -999
+2. QC fail value set -99.9
+3. backup method change into move file.
+4. set backup logging.
+
 <v1.1.11>
 1. Fixed value of "NaN" didn't replace by -999. 
 2. Create a new tech in config setting:

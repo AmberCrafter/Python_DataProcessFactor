@@ -1,7 +1,8 @@
 import sys,os
 os.chdir(os.path.dirname(__file__))
 sys.path.append(os.path.dirname(__file__)+"/../lib")
-import initialize,backup_copy,classifier,dataQC
+# sys.path.append("../lib/")
+import initialize,backup,classifier,dataQC
 
 def main():
     print("Initializing...")
@@ -14,7 +15,7 @@ def main():
     #     sys.exit(100)
 
     print("Backup the data, please wait...")
-    backup_copy.main()
+    backup.main()
     print("Backup done.")
 
     print("L0: Classifying Data....")
@@ -23,6 +24,7 @@ def main():
 
     print("L1: Quality Control of Data....")
     dataQC.DoQC().Level1(filelist)
+    # dataQC.DoQC().Level1()
     print("L1: QC Done")
 if __name__ == "__main__":
     main()
