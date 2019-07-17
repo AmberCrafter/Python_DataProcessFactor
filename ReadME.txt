@@ -14,6 +14,7 @@
 
 Change Log
 <v1.2.0>
+[Importance] Change backup method into move file, not copy.
 1. Null value set -999
 2. QC fail value set -99.9
 3. backup method change into move file.
