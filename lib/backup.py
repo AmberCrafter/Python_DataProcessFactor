@@ -1,5 +1,5 @@
 import json,os,sys
-import logging
+import logging,shutil
 def _importConfig():
     ConfigFilePath="../config/config.json"
     try:
@@ -70,7 +70,8 @@ def main():
                 for element in filelist:
                     if _isFileExist(finalFilePath+'\\'+element):  # 若目標位置文件存在，則先移除文件
                         os.remove(finalFilePath+'\\'+element)
-                    os.rename(filepath+element, finalFilePath+'\\'+element)
+                    # os.rename(filepath+element, finalFilePath+'\\'+element)
+                    shutil.move(filepath+element, finalFilePath+'\\'+element)
                     logger.info("File:{0} Backup successful!".format(element))
                 else:
                     pass
@@ -81,7 +82,8 @@ def main():
                 continue
             if _isFileExist(finalFilePath+'\\'+element):  # 若目標位置文件存在，則先移除文件
                     os.remove(finalFilePath+'\\'+element)
-            os.rename(filepath+element, finalFilePath+'\\'+element)
+            # os.rename(filepath+element, finalFilePath+'\\'+element)
+            shutil.move(filepath+element, finalFilePath+'\\'+element)
             logger.info("File:{0} Backup successful!".format(element))
 
 if __name__ == "__main__":

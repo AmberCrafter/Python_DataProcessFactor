@@ -13,6 +13,9 @@
 3. L0, L1 datafiles in L0 and L1 folder.
 
 Change Log
+<v1.2.1>
+1. Fixed can't move file into different disk.
+
 <v1.2.0>
 [Importance] Change backup method into move file, not copy.
 1. Null value set -999

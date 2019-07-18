@@ -5,7 +5,7 @@ import datetime
 import main
 
 # lib module initialize
-import os,sys,pandas,logging,json,numpy
+import os,sys,pandas,logging,json,numpy,logging,shutil
 
 print("Import finish: "+str(datetime.datetime.now()))
 # This is the simple way to do work in schedule.
