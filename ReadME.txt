@@ -13,6 +13,12 @@
 3. L0, L1 datafiles in L0 and L1 folder.
 
 Change Log
+<v1.2.2>
+1. Fixed log file bug witch didn't recode info information.
+2. Fixed the target file be occupied by other program.
+    [sol.]  Create a "try/except" structure to catch this error and loop serveral times with sleep 1 sec. in every times.
+            When the times up, it will raise an error, recoding in the log file and shut down the program.
+
 <v1.2.1>
 1. Fixed can't move file into different disk.
 

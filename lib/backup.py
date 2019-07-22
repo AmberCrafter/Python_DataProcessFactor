@@ -1,5 +1,5 @@
 import json,os,sys
-import logging,shutil
+import logging,shutil,time
 def _importConfig():
     ConfigFilePath="../config/config.json"
     try:
@@ -36,6 +36,21 @@ def _isFileExist(filepath):
         return True
     else:
         return False
+def _movefile(destfilepath, rawfilepath,count=0):
+    if count>10:
+        txt="The file \"{0}\" is been open, please close it first!".format(rawfilepath)
+        print(txt)
+        raise Exception(txt)
+    try:
+        if _isFileExist(destfilepath):  # 若目標位置文件存在，則先移除文件
+            os.remove(destfilepath)
+        # os.rename(rawfilepath, destfilepath)
+        shutil.move(rawfilepath, destfilepath)
+    except:
+        count+=1
+        time.sleep(1)
+        _movefile(destfilepath, rawfilepath,count)
+    
 
 def main():
     try:
@@ -54,7 +69,7 @@ def main():
     formation=logging.Formatter('%(asctime)-12s - %(levelname)-8s - [%(name)s] - %(message)s')
     handler=logging.FileHandler("../log/backup.log")
     handler.setFormatter(formation)
-    handler.setLevel(logging.INFO)
+    logger.setLevel(logging.INFO)
     # Add handler into logger.
     logger.addHandler(handler)
     # =============================================================== #
@@ -68,23 +83,36 @@ def main():
                 logger.warning("File: No file exist!")
             else:
                 for element in filelist:
-                    if _isFileExist(finalFilePath+'\\'+element):  # 若目標位置文件存在，則先移除文件
-                        os.remove(finalFilePath+'\\'+element)
-                    # os.rename(filepath+element, finalFilePath+'\\'+element)
-                    shutil.move(filepath+element, finalFilePath+'\\'+element)
-                    logger.info("File:{0} Backup successful!".format(element))
+                    destfilepath=finalFilePath+'\\'+element
+                    rawfilepath=filepath+element
+                    try:
+                        _movefile(destfilepath, rawfilepath)
+                        logger.info("File:\"{0}\" Backup successful!".format(element))
+                    except Exception as err:
+                        logger.warning(err.args[0])
+                        pass
+                    except:
+                        logger.warning("Undefined Error occur!")
+                        pass
                 else:
                     pass
     else:
         for element in config['FileList']:
             if not _isFileExist(filepath+element):
-                logger.warning("File:{0} is not exist!".format(element))
+                logger.warning("File:\"{0}\" is not exist!".format(element))
                 continue
-            if _isFileExist(finalFilePath+'\\'+element):  # 若目標位置文件存在，則先移除文件
-                    os.remove(finalFilePath+'\\'+element)
-            # os.rename(filepath+element, finalFilePath+'\\'+element)
-            shutil.move(filepath+element, finalFilePath+'\\'+element)
-            logger.info("File:{0} Backup successful!".format(element))
+            destfilepath=finalFilePath+'\\'+element
+            rawfilepath=filepath+element
+            try:
+                _movefile(destfilepath, rawfilepath)
+                logger.info("File:{0} Backup successful!".format(element))
+            except Exception as err:
+                logger.warning(err.args[0])
+                pass
+            except:
+                logger.warning("Undefined Error occur!")
+                pass
+            
 
 if __name__ == "__main__":
     main()
